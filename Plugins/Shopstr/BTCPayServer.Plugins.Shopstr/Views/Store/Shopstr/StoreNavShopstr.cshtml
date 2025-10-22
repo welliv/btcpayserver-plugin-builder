@@ -1,0 +1,12 @@
+@using Microsoft.AspNetCore.Routing
+@inject BTCPayServer.Plugins.Shopstr.Services.ShopstrLinkGenerator LinkGenerator
+@{
+    var storeId = Context.GetRouteValue("storeId")?.ToString();
+    var href = storeId is null ? "#" : LinkGenerator.GetStoreDashboardUrl(storeId) ?? string.Empty;
+}
+<li class="nav-item">
+    <a class="nav-link" href="@href">
+        <span class="fa fa-bullhorn"></span>
+        <span class="ms-2">Shopstr</span>
+    </a>
+</li>
