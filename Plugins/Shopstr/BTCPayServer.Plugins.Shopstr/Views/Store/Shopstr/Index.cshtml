@@ -1,0 +1,86 @@
+@model BTCPayServer.Plugins.Shopstr.Models.ShopstrSettings
+@{
+    ViewData["Title"] = "Shopstr";
+    var storeId = (string)ViewData["StoreId"]!;
+    var normalizedRelays = (IReadOnlyList<string>)ViewData["RelayList"]!;
+}
+
+<h1 class="mb-4">Shopstr integration</h1>
+
+@if (TempData["SuccessMessage"] is string success)
+{
+    <div class="alert alert-success" role="alert">@success</div>
+}
+
+<form asp-action="Update" asp-route-storeId="@storeId" method="post" class="card">
+    <div class="card-body">
+        <p class="text-muted">
+            Configure how this store publishes listings to Shopstr and how it receives encrypted customer messages via Nostr.
+        </p>
+
+        <div class="mb-3">
+            <label asp-for="PublicKey" class="form-label"></label>
+            <input asp-for="PublicKey" class="form-control" placeholder="npub1..." autocomplete="off" />
+            <span class="form-text">The Nostr public key that customers will interact with.</span>
+            <span asp-validation-for="PublicKey" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="PrivateKey" class="form-label"></label>
+            <input asp-for="PrivateKey" class="form-control" placeholder="nsec1..." autocomplete="off" />
+            <span class="form-text">Stored securely and used for signing listings and decrypting DMs.</span>
+            <span asp-validation-for="PrivateKey" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="RelayList" class="form-label"></label>
+            <input asp-for="RelayList" class="form-control" placeholder="wss://relay.damus.io, wss://nostr.wine" />
+            <span class="form-text">Comma separated list of relays for publishing listings and receiving DMs.</span>
+            <span asp-validation-for="RelayList" class="text-danger"></span>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <div class="form-check form-switch">
+                    <input asp-for="AutoPublish" class="form-check-input" />
+                    <label asp-for="AutoPublish" class="form-check-label"></label>
+                </div>
+                <span class="form-text">Automatically synchronize BTCPay products to Shopstr when they change.</span>
+            </div>
+            <div class="col-md-6">
+                <div class="form-check form-switch">
+                    <input asp-for="MessagingEnabled" class="form-check-input" />
+                    <label asp-for="MessagingEnabled" class="form-check-label"></label>
+                </div>
+                <span class="form-text">Allow customers to reach you using encrypted Nostr direct messages.</span>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Relay preview</label>
+            @if (normalizedRelays.Count == 0)
+            {
+                <div class="form-text">No relays configured yet.</div>
+            }
+            else
+            {
+                <ul class="list-unstyled">
+                    @foreach (var relay in normalizedRelays)
+                    {
+                        <li><span class="badge bg-secondary">@relay</span></li>
+                    }
+                </ul>
+            }
+        </div>
+    </div>
+    <div class="card-footer d-flex justify-content-between">
+        <a class="btn btn-outline-secondary" asp-controller="UIStores" asp-action="EditStore" asp-route-storeId="@storeId">
+            Back to store settings
+        </a>
+        <button type="submit" class="btn btn-primary">Save settings</button>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

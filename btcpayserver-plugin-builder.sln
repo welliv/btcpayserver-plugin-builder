@@ -7,6 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PluginBuilder.Tests", "Plug
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PluginBuilder", "PluginBuilder\PluginBuilder.csproj", "{A1928D9E-3939-42A7-BC39-01D7F2746C7B}"
 EndProject
+
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BTCPayServer.Plugins.Shopstr", "Plugins\\Shopstr\\BTCPayServer.Plugins.Shopstr\\BTCPayServer.Plugins.Shopstr.csproj", "{479B0579-2E7B-4D1C-9029-A71A5FFC7AC7}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Misc", "Misc", "{01892AE1-B084-486D-AEB8-ACA68C4FB202}"
 	ProjectSection(SolutionItems) = preProject
 		Dockerfile = Dockerfile
@@ -31,6 +34,10 @@ Global
 		{A1928D9E-3939-42A7-BC39-01D7F2746C7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1928D9E-3939-42A7-BC39-01D7F2746C7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1928D9E-3939-42A7-BC39-01D7F2746C7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{479B0579-2E7B-4D1C-9029-A71A5FFC7AC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{479B0579-2E7B-4D1C-9029-A71A5FFC7AC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{479B0579-2E7B-4D1C-9029-A71A5FFC7AC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{479B0579-2E7B-4D1C-9029-A71A5FFC7AC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
